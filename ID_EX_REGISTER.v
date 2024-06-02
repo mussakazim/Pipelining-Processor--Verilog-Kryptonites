@@ -7,6 +7,8 @@ module ID_EX_REGISTER(
     output [31:0] RtData,
     output [31:0] SignExtConst,
 	 output [31:0] BranchAddress,
+	 output [31:0] jumpaddress2,
+
 	 output [4:0] rs,
     output [4:0] rt,
     output [4:0] rd,
@@ -43,7 +45,9 @@ module ID_EX_REGISTER(
     input Branchin,
     input Jumpin,
     input SignZeroin,
-    input [1:0]ALUOpin
+    input [1:0]ALUOpin,
+	 input [31:0] jumpaddress
+
     );
 	 
 	 
@@ -53,6 +57,8 @@ module ID_EX_REGISTER(
     reg [31:0]       RtDatatemp;
     reg [31:0] SignExtConsttemp;
 	 reg [31:0] BranchAddresstemp;
+	 reg [31:0] jumpaddressreg;
+
 	 reg [4:0]            rstemp;
     reg [4:0]            rttemp;
     reg [4:0]            rdtemp;
@@ -93,6 +99,7 @@ module ID_EX_REGISTER(
 			Jumptemp		     =     Jumpin;
 			SignZerotemp	  =     SignZeroin;
 			ALUOptemp		  =     ALUOpin;
+			jumpaddressreg   =     jumpaddress;
 	 
 	 end
 	 
@@ -117,6 +124,7 @@ assign      Branch          =    Branchtemp		   ;
 assign      Jump            =    Jumptemp		   ;
 assign      SignZero        =    SignZerotemp	   ;
 assign    ALUOp             =    ALUOptemp		   ;
+assign    jumpaddress2      =    jumpaddressreg;
 	 
 	 
 	 

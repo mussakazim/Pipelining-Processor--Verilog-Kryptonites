@@ -1,26 +1,26 @@
 `timescale 1ns / 1ps
 
+module AluMux2(
 
-module AluMUX1(
-    output [31:0] Mux1Output,
-    input [31:0] RsData1,
+    output[31:0] AluMux2Out,
+    input [31:0] BackAluMux_in,
 	 input [31:0] AluOut_exmem,
 	 input [31:0] MuxOut_memwb,
-	 input [1:0] selectLine1
+	 input [1:0] selectLine2
     );
 
-     
-	 reg[31:0] tempOut;
+
+    reg[31:0] tempOut;
 	 
 	 always@(*)
 	 begin
 	       
-			 if(selectLine1 == 2'b01)
+			 if(selectLine2 == 2'b01)
 			 begin
 			      tempOut = AluOut_exmem;
 			 end
 			 
-			 else if(selectLine1 == 2'b10)
+			 else if(selectLine2 == 2'b10)
 			 begin
 			      tempOut = MuxOut_memwb;
 			 end
@@ -28,12 +28,12 @@ module AluMUX1(
 			 
 			 else 
 			 begin
-			      tempOut = RsData1;
+			      tempOut = BackAluMux_in;
 			 end
 			 
 	 end
 	 
 	 
-	 assign Mux1Output = tempOut;
- 
+	 assign AluMux2Out = tempOut;
+
 endmodule

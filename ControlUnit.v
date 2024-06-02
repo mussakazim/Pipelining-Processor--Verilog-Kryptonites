@@ -19,6 +19,8 @@ reg tempRegDst,tempALUSrc,tempMemtoReg,tempRegWrite,tempMemRead,tempMemWrite,tem
 reg [1:0] tempALUOp;
 
 always @(*)
+
+begin
 casex (Opcode)
  6'b000000 : begin // R - type   Add
     tempRegDst = 1'b1;
@@ -142,6 +144,7 @@ casex (Opcode)
     end
  
 endcase
+end
 
 
 assign  RegDst       =    tempRegDst;

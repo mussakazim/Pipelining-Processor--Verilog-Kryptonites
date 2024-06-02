@@ -3,8 +3,9 @@
 module InstructionRegister(
     output [31:0] InstructionOut,
     input [31:0] InstructionIn,
-    input hazardDet,
-	 input clk
+	 input clk,
+	 input IFIDWrite,//new
+	 input IFFLush
     );
 
 
@@ -12,10 +13,14 @@ module InstructionRegister(
 
    always@(posedge clk)
    begin
-	    // if(hazardDet != 1)
-		 // begin
+		if(IFIDWrite == 1'b1)
+			begin
             InstructionReg = InstructionIn;
-		 // end
+			end 
+		if(IFFLush == 1'b1)
+		begin
+		InstructionReg=32'b0;
+		end
 	end
 	
 	assign InstructionOut = InstructionReg;

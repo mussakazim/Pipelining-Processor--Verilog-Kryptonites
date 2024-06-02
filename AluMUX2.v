@@ -1,8 +1,8 @@
 `timescale 1ns / 1ps
 
 
-module AluMUX2(
-    output [31:0] AluMuxTwoOut,
+module BackAluMux(
+    output [31:0] BackAluMux_Out,
     input [31:0] RtData1,
     input [31:0] SignExtConst1,
 	 input ALUSrc1
@@ -25,6 +25,6 @@ module AluMUX2(
 		  
 	 end
 
-   assign AluMuxTwoOut = tempOut;
+   assign BackAluMux_Out = tempOut;
 
 endmodule

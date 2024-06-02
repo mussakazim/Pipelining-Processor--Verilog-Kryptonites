@@ -5,6 +5,8 @@ module PCmodule(
     output [31:0] muxout,
     input [31:0] plus1,
     input [31:0] branchAddr,
+	 input [31:0] jumpaddress,
+	 input jump,
 	 input pcSrc
     );
 	 
@@ -23,7 +25,11 @@ module PCmodule(
 			 
 			      tempmuxout  = branchAddr;
 			   end
-	       else if(pcSrc != 1)
+				else if(jump==1)
+				begin
+				tempmuxout=jumpaddress;
+				end
+	         else if(pcSrc != 1)
 			   begin
 			      tempmuxout  =  plus1;
 			   end
